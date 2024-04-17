@@ -7,6 +7,13 @@ if [[ "$OSTYPE" != "linux-gnu"* ]]; then
     exit
 fi
 
+## Check if Docker compose plugin is installed
+
+if [[ ! -x "$(command -v compose version)" ]]; then
+    echo "Compose plugin is not installed. Exiting..."
+    exit
+fi
+
 ## Variables
 
 PROJECT_UID=$(id -u)
