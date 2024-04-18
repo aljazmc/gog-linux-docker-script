@@ -22,6 +22,67 @@ PROJECT_LANG=$LANG
 
 start() {
 
+  if [[ ! -f Dockerfile ]]; then
+    touch Dockerfile && \
+    cat <<EOF> Dockerfile
+  FROM debian:bookworm
+
+  ENV DEBIAN_FRONTEND=noninteractive
+  ENV USER=$USER
+
+  RUN apt-get update && \
+    apt-get install -y \
+    gtk2-engines \
+    gtk2-engines-pixbuf \
+    gtk2-engines-murrine \
+    libasound2-data \
+    libasound2 \
+    libasound2-plugins \
+    libc6 \
+    libcanberra-gtk-module \
+    libcurl4 \
+    libegl1-mesa \
+    libgconf-2-4 \
+    libgl1-mesa-dri \
+    libgl1-mesa-glx \
+    libglapi-mesa \
+    libgles2-mesa \
+    libgtk2.0-0 \
+    libnss3 \
+    libpng16-16 \
+    libpng-dev \
+    libxml2 \
+    libxt6 \
+    libxtst6 \
+    libudev-dev \
+    locales \
+    locales-all \
+    mesa-opencl-icd \
+    mesa-va-drivers \
+    mesa-vdpau-drivers \
+    sudo \
+    dosbox
+
+  ENV LC_ALL $PROJECT_LANG
+  ENV LANG $PROJECT_LANG
+  ENV LANGUAGE $PROJECT_LANG
+
+  RUN groupadd -g $PROJECT_GID -r $USER
+  RUN useradd -u $PROJECT_UID -g $PROJECT_GID --create-home -r $USER
+
+  #Change password
+  RUN echo "$USER:$USER" | chpasswd
+  #Make sudo passwordless
+  RUN echo "$USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/90-$USER
+  RUN usermod -aG sudo $USER
+  RUN usermod -aG plugdev $USER
+
+  USER $USER
+
+  WORKDIR /home/$USER
+EOF
+fi
+
 }
 
 "$1"
