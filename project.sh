@@ -83,6 +83,28 @@ start() {
 EOF
 fi
 
+if [[ ! -f docker-compose.yml ]]; then
+  touch docker-compose.yml
+  cat <<EOF> docker-compose.yml
+  services:
+    gogplay:
+      build: .
+      user: $PROJECT_UID:$PROJECT_GID
+      environment:
+        DISPLAY: $DISPLAY
+        XDG_RUNTIME_DIR: $XDG_RUNTIME_DIR
+      working_dir: "/home/$USER"
+      volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix
+        - /run/user/${PROJECT_UID}:/run/user/${PROJECT_UID}
+        - .:/home/$USER/source
+        - "./GOG\ Games:/home/$USER/GOG\ Games"
+      devices:
+        - /dev/snd:/dev/snd
+        - /dev/dri:/dev/dri
+EOF
+fi
+
 }
 
 "$1"
