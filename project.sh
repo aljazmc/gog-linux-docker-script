@@ -113,6 +113,10 @@ fi
     find ./* -maxdepth 0 -name "*.sh" ! -name "project.sh" -exec docker compose run --rm gogplay sh -c 'cd /home/aljazmc/source && ./{}' \;
   fi
 
+## Find start.sh and run it
+
+  find ./* -name "start.sh" -exec docker compose run --rm gogplay sh -c \'{}\' \;
+
 }
 
 "$1"
