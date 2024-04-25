@@ -14,6 +14,13 @@ if [[ ! -x "$(command -v compose version)" ]]; then
     exit
 fi
 
+## Check for other .sh files than project.sh in the project folder or quit
+
+if find ./* -maxdepth 0 -type f -name "*.sh" ! -name "project.sh" -exec false {} + ; then
+    echo "No .sh file found. Exiting..."
+    exit
+fi
+
 ## Variables
 
 PROJECT_UID=$(id -u)
