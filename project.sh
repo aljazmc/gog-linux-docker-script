@@ -27,6 +27,16 @@ PROJECT_UID=$(id -u)
 PROJECT_GID=$(id -g)
 PROJECT_LANG=$LANG
 
+clean() {
+
+  docker compose down -v --rmi all --remove-orphans
+  rm -rf GOG\ Games/ \
+    scripts/ \
+    docker-compose.yml \
+    Dockerfile
+
+}
+
 start() {
 
   if [[ ! -f Dockerfile ]]; then
