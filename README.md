@@ -20,3 +20,9 @@ This script creates Docker container to run GOG games, providing isolation and d
 
 ### Remove generated files and folders
 1. Clean up with './project.sh clean'.
+
+## > Prerequisites
+
+* Linux system with bash shell
+* Docker (with docker compose plugin) installed and running
+
