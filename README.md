@@ -62,3 +62,7 @@ cd game
 > * Function `./project clean`:
 >   * remove everything generated with `./project start`
 
+## > Printscreen
+
+Install screen for DEFCON:
+![Install screen for DEFCON](printscreen.png)
