@@ -38,7 +38,7 @@ This script creates Docker container to run GOG games, providing isolation and d
 
 &nbsp;
 
-## > Example
+## > Example Use
 
 ```
 ## > clone the project
