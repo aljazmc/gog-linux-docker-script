@@ -126,7 +126,7 @@ fi
   if [[ ! -d GOG\ Games ]]; then
     mkdir -p GOG\ Games 
     find ./* -maxdepth 0 -name "*.sh" -exec chmod +x {} +
-    find ./* -maxdepth 0 -name "*.sh" ! -name "project.sh" -exec docker compose run --rm gogplay sh -c 'cd /home/aljazmc/source && ./{}' \;
+    find ./* -maxdepth 0 -name "*.sh" ! -name "project.sh" -exec docker compose run --rm gogplay sh -c 'cd /home/$USER/source && ./{}' \;
   fi
 
 ## Find start.sh and run it
