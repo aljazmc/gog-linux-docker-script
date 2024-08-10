@@ -16,7 +16,11 @@ git clone https://github.com/aljazmc/gog-linux-docker-script
 ```
 cd gog-linux-docker-script
 ```
-* copy the GOG's "*.sh" file(s) into the gog-linux-docker-script folder. **You could put only one game (with all DLCs and extras) in this folder.**
+* copy the GOG's "*.sh" file(s) into the gog-linux-docker-script folder. 
+
+> [!CAUTION]
+> You could put only one game (with all DLCs and extras) in this folder.
+
 * install and start the game with:
 ```
 ./project.sh start
