@@ -31,7 +31,6 @@ clean() {
 
   docker compose down -v --rmi all --remove-orphans
   rm -rf GOG\ Games/ \
-    scripts/ \
     docker-compose.yml \
     Dockerfile
 
