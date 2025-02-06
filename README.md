@@ -2,7 +2,7 @@
 
 # gog-linux-docker-script
 
-A script for running GOG game in a Docker container.  
+A script for running GOG games in a Docker container.  
 &nbsp;
 
 &nbsp;
