@@ -14,7 +14,7 @@ This script creates Docker container to run GOG games, providing isolation and d
 
 &nbsp;
 
-## > Concise Instructions
+## > Instructions
 
 ### Start
 1. Copy one GOG game for GNU/Linux OS (with DLCs) in the project folder,
