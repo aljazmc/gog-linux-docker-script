@@ -9,7 +9,7 @@ fi
 
 ## Check if Docker compose plugin is installed
 
-if [[ ! -x "$(command -v compose version)" ]]; then
+if [[ ! -x "$(command -v compose)" ]]; then
     echo "Compose plugin is not installed. Exiting..."
     exit
 fi
