@@ -1,6 +1,7 @@
-*[0-9].sh
+**
 
-Dockerfile
-docker-compose.yml
+!LICENSE
+!README.md
+!printscreen.png
+!project.sh
 
-GOG Games/
