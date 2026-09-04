@@ -29,8 +29,18 @@ PROJECT_GID=$(id -g)
 clean() {
 
     docker compose down -v --rmi all --remove-orphans
-    rm -rf GOG\ Games/ \
-        docker-compose.yml
+    find . -mindepth 1 -maxdepth 1 \
+    | sed "
+        /.git/d;
+        /.gitignore/d;
+        /LICENSE/d;
+        /README.md/d;
+        /gog_defcon_2.0.0.5.sh/d;
+        /printscreen.png/d;
+        /project.sh/d;
+    " \
+    | xargs -I {} rm -rf {}
+
 
 }
 
