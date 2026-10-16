@@ -9,15 +9,8 @@ fi
 
 ## Check if Docker compose plugin is installed
 
-if [[ ! -x "$(command -v compose)" ]]; then
+if ! docker compose version >/dev/null 2>&1; then
     echo "Compose plugin is not installed. Exiting..."
-    exit
-fi
-
-## Check for other .sh files than project.sh in the project folder or quit
-
-if find ./* -maxdepth 0 -type f -name "*.sh" ! -name "project.sh" -exec false {} + ; then
-    echo "No .sh file found. Exiting..."
     exit
 fi
 
@@ -28,23 +21,28 @@ PROJECT_GID=$(id -g)
 
 clean() {
 
-    docker compose down -v --rmi all --remove-orphans
+    if [[ -f docker-compose.yml ]]; then
+        docker compose down -v --rmi all --remove-orphans
+    fi
     find . -mindepth 1 -maxdepth 1 \
-    | sed "
-        /.git/d;
-        /.gitignore/d;
-        /LICENSE/d;
-        /README.md/d;
-        /gog_defcon_2.0.0.5.sh/d;
-        /printscreen.png/d;
-        /project.sh/d;
-    " \
-    | xargs -I {} rm -rf {}
-
+        ! -name ".git" \
+        ! -name ".gitignore" \
+        ! -name "LICENSE" \
+        ! -name "README.md" \
+        ! -name "printscreen.png" \
+        ! -name "*.sh" \
+        -exec rm -rf {} +
 
 }
 
 start() {
+
+## Check for other .sh files than project.sh in the project folder or quit
+
+if find ./* -maxdepth 0 -type f -name "*.sh" ! -name "project.sh" -exec false {} + ; then
+    echo "No .sh file found. Exiting..."
+    exit 1
+fi
 
 if [[ ! -f docker-compose.yml ]]; then
     touch docker-compose.yml
@@ -85,4 +83,12 @@ fi
 
 }
 
-"$1"
+case "$1" in
+    start|clean)
+        "$1"
+        ;;
+    *)
+        echo "Usage: ./project.sh {start|clean}"
+        exit 1
+        ;;
+esac
