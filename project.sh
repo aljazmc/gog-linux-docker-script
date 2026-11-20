@@ -50,12 +50,12 @@ if [[ ! -f docker-compose.yml ]]; then
 services:
     gogplay:
         image: aljazmc/x11-debian
-        user: $(id -u):$(id -g)
+        user: $PROJECT_UID:$PROJECT_GID
         working_dir: /home/x11
         volumes:
             - .:/home/x11
             - /home/$USER/.Xauthority:/home/x11/.Xauthority
-            - /run/user/$(id -u):/run/user/1000
+            - /run/user/$PROJECT_UID:/run/user/1000
             - /tmp/.X11-unix:/tmp/.X11-unix
             - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
         devices:
@@ -74,12 +74,12 @@ fi
   if [[ ! -d GOG\ Games ]]; then
     mkdir -p GOG\ Games 
     find ./* -maxdepth 0 -name "*.sh" -exec chmod +x {} +
-    find ./* -maxdepth 0 -name "*.sh" ! -name "project.sh" -exec docker compose run --rm gogplay sh -c 'cd /home/x11 && ./{}' \;
+    find ./* -maxdepth 0 -name "*.sh" ! -name "project.sh" -exec docker compose run --rm gogplay sh -c 'cd /home/x11 && ./"$1"' sh {} \;
   fi
 
 ## Find start.sh and run it
 
-  find ./* -name "start.sh" -exec docker compose run --rm gogplay sh -c \'{}\' \;
+  find ./* -name "start.sh" -exec docker compose run --rm gogplay sh -c '"$1"' sh {} \;
 
 }
 
