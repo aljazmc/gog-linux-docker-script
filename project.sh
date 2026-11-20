@@ -26,6 +26,8 @@ clean() {
     fi
     find . -mindepth 1 -maxdepth 1 \
         ! -name ".git" \
+        ! -name ".github" \
+        ! -name "tests" \
         ! -name ".gitignore" \
         ! -name "LICENSE" \
         ! -name "README.md" \
