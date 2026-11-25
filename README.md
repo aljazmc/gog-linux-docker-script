@@ -1,6 +1,6 @@
 # gog-linux-docker-script
 
-[![lint](https://github.com/aljazmc/gog-linux-docker-script/actions/workflows/lint.yml/badge.svg)](https://github.com/aljazmc/gog-linux-docker-script/actions/workflows/lint.yml)
+[![CI](https://github.com/aljazmc/gog-linux-docker-script/actions/workflows/ci.yml/badge.svg)](https://github.com/aljazmc/gog-linux-docker-script/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ed?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 [![GOG](https://img.shields.io/badge/GOG-Linux%20games-86328a?logo=gogdotcom&logoColor=white)](https://www.gog.com/)
